@@ -1,0 +1,117 @@
+/*default version*/
+@font-face {
+	font-family: 'TwCenMT';
+	src: url('fonts/TCM_____.TTF'); 
+	src: 
+		local('Tw Cen MT'),
+		local('Tw-Cen-MT'),
+		url('fonts/TCM_____.TTF') 
+		format('truetype');
+}
+/*bold version*/
+@font-face {
+	font-family: 'TwCenMT';
+	src: url('fonts/TCCEB.TTF'); 
+	src: 
+		local('Tw Cen MT Bold'),
+		local('Tw-Cen-MT-Bold'),
+		url('fonts/TCCEB.TTF') 
+		format('truetype');
+	font-weight: bold;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: 'TwCenMT';
+    
+}
+
+header{
+    width:100%;
+    height: 12em;
+    background:#fff;
+    text-align: center;
+
+    
+}
+
+*:focus {
+    outline: none;
+}
+
+#logo{
+    padding-top: 0.33em;
+    font-size: 50pt;
+    color:#064D67;
+    margin-bottom: 0;
+}
+
+#logo span{
+    font-weight: bold;
+    color:#000;
+    display: inline-block;
+    font-size: 50pt !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#inputarea{
+    margin-top: 1.5em;
+    width:100%;
+    height: 6em;
+    
+}
+
+#inputarea input{
+    transition: all 0.2s ease;
+    background: transparent;
+    font-family: 'TwCenMT';
+    border: none;
+    border-bottom: #eeeeee solid 3px;
+    font-size: 25pt !important;
+    text-align: center;
+
+    align-self: center;
+    min-width: 5em;
+    max-width: 50%;
+    
+}
+
+#inputarea input:focus{
+    
+    border-bottom: #064D67 solid 3px;
+ 
+    
+}
+
+#main{
+    width: 100vw;
+    height: calc(100vh - (12em));
+    text-align: center;
+    line-height: calc(100vh - (24em));
+}
+
+#main p{
+    vertical-align: middle;
+}
+
+#emRes{
+    
+    font-size: 98pt;
+    margin: 0;
+    
+}
+
+canvas{
+    height: calc(100vh - (12em)) !important;
+}
+
+
+
+
+
+
+/* Text input */
