@@ -1,0 +1,71 @@
+<html>
+  <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+      <script>
+          var api_key = "a8d67c385959aa0b15540e2fde6c994a";
+          var emotions = ["anger", "joy", "fear", "sadness", "surprise"];
+    
+          $(document).ready(function(){
+   
+  
+          var txt = $('#text');
+          txt.keypress(
+          
+              function (e){
+                  if(e.which == 13){
+
+                      var textInput = txt.val();
+          
+                      console.log(textInput);
+          
+                      // batch example
+                      $.post(
+                        'https://apiv2.indico.io/emotion/batch',
+                        JSON.stringify({
+                          'api_key': api_key,
+                          'data': [textInput],
+                          'threshold': 0.1
+                        })
+                      ).then(function(res) {
+                        var response = res.results[0]; //(fear: 0.23123, joy:0.32231)
+                        var greatestEmotion = ""//fear: 0.23123
+          
+                        for(i=0;i<emotions.length;i++){
+                          if(response.hasOwnProperty(emotions[i])){
+                            console.log("We made it!");
+                            if(greatestEmotion == "" || response[emotions[i]]>=response[greatestEmotion]){
+                              greatestEmotion = emotions[i];
+                            }
+                          }
+                          
+                        }
+                        console.log(response);
+                        console.log(greatestEmotion);
+                        $("#emRes").text(greatestEmotion);
+                      });
+
+                  }
+        
+              });
+  
+          });
+    
+        </script>
+
+  </head>
+
+  <body>
+
+
+
+    <textarea id="text"></textarea>
+
+    <p>Emotion:</p>
+    <p id="emRes"></p>
+
+
+
+
+  </body>
+</html>
