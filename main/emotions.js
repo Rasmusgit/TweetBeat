@@ -1,10 +1,13 @@
+
  var api_key = "a8d67c385959aa0b15540e2fde6c994a";
           var emotions = ["anger", "joy", "fear", "sadness", "surprise"];
 
-          $(document).ready(function(){
+          $.noConflict();         
+
+          jQuery( document ).ready(function( $ ) {
 
 
-          var txt = $('#text');
+          var txt = $('#inputText');
           txt.keypress(
 
               function (e){
@@ -61,6 +64,7 @@
 
                         //$("#emRes").hide(100);
                         $("#emRes").text(greatestEmotion);
+                        emotionText = greatestEmotion;
                         //$("#emRes").show(150);
                       });
 
