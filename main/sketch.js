@@ -21,8 +21,7 @@ function setup() {
 
   //setupBase();
 
-
-  a = Synth({ maxVoices:4, waveform:'PWM', attack:ms(1), decay:ms(1000) })
+  a = Synth({ maxVoices:4, waveform:'PWM', attack:ms(1), decay:ms(1000), pulsewidth:0.25  })
 
   //drums = EDrums('x*o*x*o-')
   //follow = Follow( drums )
@@ -32,7 +31,7 @@ function setup() {
   textSize(fontsize);
   textAlign(CENTER, CENTER);
 
-
+  am = ["a3", "c3", "e3"];
 
 }
 
@@ -45,23 +44,37 @@ function draw() {
         case "anger":
         background("#a91834");
 
-        a.play( [240, 480, 320], 1/4 );
+        //a.play( [240, 480, 320], 1/4 );
+        f = ["f3", "a3", "c3"];
+        gm = ["g3","bb3", "d3"];
+        //a.play(am);
+        a.chord.seq( [f,gm, am], 1);
             break;
         case "joy":
           background("#F4C925");
-          a.play( [440, 880, 1320], 1/8 );
+          //a.play( [440, 880, 1320], 1/8 );
+          e = ["e3", "g#3", "b3"];
+          //a.play(e);
+          a.chord.seq( [e], 1);
             break;
         case "fear":
           background("#A587BD");
-          a.play( [100, 150, 100], 1/4 );
+          //a.play( [100, 150, 100], 1/4 );
+          dsm = ["d#", "f#", "a#"];
+          a.chord.seq( [dsm], 1);
             break;
         case "sadness":
           background("#7ACFEE");
-          a.play( [50, 80, 50, 80 ], 1/2 );
+          //a.play( [50, 80, 50, 80 ], 1/2 );
+          
+          //a.play(am);
+          a.chord.seq( [am], 1);
             break;
         case "surprise":
           background( "#79B84D");
-          a.play( [5, 50, 500,  1000], 1/4 );
+          //a.play( [5, 50, 500,  1000], 1/4 );
+            bb = ["bb","d", "f"];
+            a.chord.seq([bb], 1);
             break;
         default:
           background("#ffffff");

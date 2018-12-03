@@ -1,21 +1,21 @@
 /*default version*/
 @font-face {
 	font-family: 'TwCenMT';
-	src: url('fonts/TCM_____.TTF'); 
-	src: 
+	src: url('fonts/TCM_____.TTF');
+	src:
 		local('Tw Cen MT'),
 		local('Tw-Cen-MT'),
-		url('fonts/TCM_____.TTF') 
+		url('fonts/TCM_____.TTF')
 		format('truetype');
 }
 /*bold version*/
 @font-face {
 	font-family: 'TwCenMT';
-	src: url('fonts/TCCEB.TTF'); 
-	src: 
+	src: url('fonts/TCCEB.TTF');
+	src:
 		local('Tw Cen MT Bold'),
 		local('Tw-Cen-MT-Bold'),
-		url('fonts/TCCEB.TTF') 
+		url('fonts/TCCEB.TTF')
 		format('truetype');
 	font-weight: bold;
 }
@@ -26,7 +26,7 @@ body{
     padding: 0;
     margin: 0;
     font-family: 'TwCenMT';
-    
+
 }
 
 header{
@@ -35,7 +35,7 @@ header{
     background:#fff;
     text-align: center;
 
-    
+
 }
 
 *:focus {
@@ -58,11 +58,17 @@ header{
     margin: 0 !important;
 }
 
+#profile{
+	width: 100px;
+	height: 100px;
+	background: #000;
+}
+
 #inputarea{
     margin-top: 1.5em;
     width:100%;
     height: 6em;
-    
+
 }
 
 #inputarea input{
@@ -77,14 +83,14 @@ header{
     align-self: center;
     min-width: 5em;
     max-width: 50%;
-    
+
 }
 
 #inputarea input:focus{
-    
+
     border-bottom: #064D67 solid 3px;
- 
-    
+
+
 }
 
 #main{
@@ -99,10 +105,10 @@ header{
 }
 
 #emRes{
-    
+
     font-size: 98pt;
     margin: 0;
-    
+
 }
 
 canvas{

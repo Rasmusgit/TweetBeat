@@ -2,7 +2,7 @@
  var api_key = "a8d67c385959aa0b15540e2fde6c994a";
           var emotions = ["anger", "joy", "fear", "sadness", "surprise"];
 
-          $.noConflict();         
+          $.noConflict();
 
           jQuery( document ).ready(function( $ ) {
 
@@ -15,7 +15,12 @@
 
                       var textInput = txt.val();
 
+
                       console.log(textInput);
+                      //document.write(' <?php echo getTweet( ' + textInput + ' , 0);?> ');
+                      //var phpadd = "<?php echo getTweet( " . textInput . " , 0);?>" //call the php add function
+                      //alert(phpadd);
+
 
                       // batch example
                       $.post(
@@ -40,11 +45,11 @@
                         }
                         console.log(response);
                         console.log(greatestEmotion);
-                        
+
                         switch(greatestEmotion) {
                             case "anger":
                                 $(document.body).css("background", "#a91834");
-                                
+
                                 break;
                             case "joy":
                                 $(document.body).css("background", "#F4C925");
@@ -59,7 +64,7 @@
                                 $(document.body).css("background", "#79B84D");
                                 break;
                             default:
-                                
+
                         }
 
                         //$("#emRes").hide(100);
@@ -73,3 +78,18 @@
               });
 
           });
+
+
+        function getOutput() {
+            jQuery.ajax({
+               url:'searchTweets.php',
+               complete: function (response) {
+                console.log(response);
+                jQuery('#inputText').text(response.statuses[0].text);
+               },
+               error: function () {
+                jQuery('#inputText').text('Bummer: there was an error!');
+               }
+           });
+           return false;
+         }
