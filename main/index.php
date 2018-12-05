@@ -53,19 +53,24 @@
 
         <div id="inputarea">
 
-          <input type="text" id="inputText"  class="width-dynamic proba dva"  placeholder="Write message here..." />
-          <button class="button" onClick="getOutput()">Button</button>
+          <input type="text" id="inputText"  class="width-dynamic proba dva"  placeholder="Write message here..." onKeyPress="anslyseEmotion(event)" />
+          <button class="button" onClick="post()">Search</button>
 
         </div>
         <script src='textbox.js'></script>
-        <script>
-            var simple = <?php echo json_encode($tweets) ?>;
-            console.log(simple);
-            simple = simple.statuses[0].text;
-            console.log(simple);
-              /*var input = document.getElementById("inputText");
-              input.value = simple;*/
+        <script type="text/javascript">
+            function post(){
+              var inputText = jQuery('#inputText').val();
+
+              jQuery.post('searchTweets.php', {postsearch: inputText}, 
+              function(data){
+                var searchResult = jQuery.parseJSON(data);
+                var postText = searchResult.statuses[0].text;
+                console.log(postText);
+              });
+            }
         </script>
+        
 
     </header>
     <!--<div id="main">
