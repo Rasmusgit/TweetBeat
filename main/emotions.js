@@ -6,41 +6,21 @@
 
           $.noConflict();
 
-          jQuery( document ).ready(function( $ ) {
-
-
-          txt = $('#inputText').val();
-          //txt.keypress(anslyseEmotion(this.value));
-
-
-
-
-
-          });
-
-          function anslyseEmotion(e, text){
-            if(e.which == 13){
-
-                var textInput = txt;
-
-
-                console.log(textInput);
-                //document.write(' <?php echo getTweet( ' + textInput + ' , 0);?> ');
-                //var phpadd = "<?php echo getTweet( " . textInput . " , 0);?>" //call the php add function
-                //alert(phpadd);
-
-
+          function anslyseEmotion( text){
+            
+                console.log("text: " + text);
+            
                 // batch example
                 jQuery.post(
                   'https://apiv2.indico.io/emotion/batch',
                   JSON.stringify({
                     'api_key': api_key,
-                    'data': [textInput],
+                    'data': [text],
                     'threshold': 0.1
                   })
                 ).then(function(res) {
-                  var response = res.results[0]; //(fear: 0.23123, joy:0.32231)
-                  var greatestEmotion = ""//fear: 0.23123
+                  var response = res.results[0]; 
+                  var greatestEmotion = "";
 
                   for(i=0;i<emotions.length;i++){
                     if(response.hasOwnProperty(emotions[i])){
@@ -75,13 +55,8 @@
 
                   }
 
-                  //$("#emRes").hide(100);
-                  jQuery("#emRes").text(greatestEmotion);
                   emotionText = greatestEmotion;
-                  //$("#emRes").show(150);
                 });
-
-            }
 
         }
 
