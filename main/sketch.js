@@ -2,10 +2,12 @@
 
 var font,
   fontsize = 120,
-  oldEmotion = "x"
+  oldEmotion = "",
+  oldTweetText = "x";
 
   var yoff = 0.0;
   var waveOn = false;
+  
 
 
 
@@ -37,8 +39,11 @@ function setup() {
 
 function draw() {
   //background( follow.getValue() * 255 )'
-  if(emotionText != oldEmotion){
+
+  if(oldTweetText != "x" && tweetText != oldTweetText || emotionText != oldEmotion){
+      
       oldEmotion = emotionText;
+      oldTweetText = tweetText;
       waveOn = false;
       switch(emotionText) {
         case "anger":
@@ -49,6 +54,7 @@ function draw() {
         gm = ["g3","bb3", "d3"];
         //a.play(am);
         a.chord.seq( [f,gm, am], 1);
+
             break;
         case "joy":
           background("#F4C925");
@@ -62,7 +68,8 @@ function draw() {
           //a.play( [100, 150, 100], 1/4 );
           dsm = ["d#", "f#", "a#"];
           a.chord.seq( [dsm], 1);
-	  a.attack = returnJson.statuses[0].favorite_count;
+
+          
             break;
         case "sadness":
           background("#7ACFEE");
@@ -70,12 +77,14 @@ function draw() {
           
           //a.play(am);
           a.chord.seq( [am], 1);
+        
             break;
         case "surprise":
           background( "#79B84D");
           //a.play( [5, 50, 500,  1000], 1/4 );
             bb = ["bb","d", "f"];
             a.chord.seq([bb], 1);
+            
             break;
         default:
           background("#ffffff");
@@ -84,14 +93,21 @@ function draw() {
 
       }
 
+      retweetVal = returnJson.statuses[0].retweet_count/ 100000;
+
+      console.log(retweetVal);
+
+      a.attack = returnJson.statuses[0].favorite_count;
+
+      r = Reverb({ roomSize: Add( retweetVal, Sine( .05, .245 )._ ) });
+     
+      a.fx.add( r );
 
   }
 
   if(waveOn == true){
     //drawWave();
-    //drawBase();
-
-   
+    //drawBase();   
   }
 
   // Align the text in the center
@@ -182,3 +198,5 @@ function drawBase(){
  background( 64,64,64,10 )
  ellipse( ww2, wh2, radius, radius )
 }
+
+function convertValue(val, max, min) { return (val - min) / (max - min); }

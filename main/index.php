@@ -5,7 +5,9 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
       <script src="../resources/p5.gibber.js" type="text/javascript" charset="utf-8"></script>
       <script> var emotionText = "";
-	       var returnJson = new Object();</script>
+         var returnJson = new Object();
+         var tweetText = "";   
+      </script>
       <script language="javascript" src="sketch.js"></script>
       <script
       src="https://code.jquery.com/jquery-3.3.1.js"
@@ -42,8 +44,10 @@
               jQuery.post('searchTweets.php', {postsearch: inputText}, 
               function(data){
                 var searchResult = jQuery.parseJSON(data);
-		returnJson=searchResult
+                returnJson=searchResult
+                console.log(returnJson);
                 var postText = returnJson.statuses[0].text;
+                tweetText = postText;
                 console.log(postText);
                 anslyseEmotion(postText);
               });
@@ -57,3 +61,6 @@
   </body>
 
 </html>
+
+
+

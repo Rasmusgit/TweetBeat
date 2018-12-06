@@ -24,7 +24,7 @@
 
                   for(i=0;i<emotions.length;i++){
                     if(response.hasOwnProperty(emotions[i])){
-                      console.log("We made it!");
+                      
                       if(greatestEmotion == "" || response[emotions[i]]>=response[greatestEmotion]){
                         greatestEmotion = emotions[i];
                       }
