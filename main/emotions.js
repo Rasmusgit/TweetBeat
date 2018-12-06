@@ -6,7 +6,7 @@
 
           $.noConflict();
 
-          function anslyseEmotion( text){
+          function anslyseEmotion(text){
             
                 console.log("text: " + text);
             
@@ -19,7 +19,7 @@
                     'threshold': 0.1
                   })
                 ).then(function(res) {
-                  var response = res.results[0]; 
+                  var response = res.results[0];
                   var greatestEmotion = "";
 
                   for(i=0;i<emotions.length;i++){

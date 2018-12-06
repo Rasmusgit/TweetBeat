@@ -62,6 +62,7 @@ function draw() {
           //a.play( [100, 150, 100], 1/4 );
           dsm = ["d#", "f#", "a#"];
           a.chord.seq( [dsm], 1);
+	  a.attack = returnJson.statuses[0].favorite_count;
             break;
         case "sadness":
           background("#7ACFEE");
