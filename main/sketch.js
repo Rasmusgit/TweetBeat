@@ -25,9 +25,20 @@ function setup() {
 
   a = Synth({ maxVoices:4, waveform:'PWM', attack:ms(1), decay:ms(1000), pulsewidth:0.25  })
 
+  //happySynth = Synth({maxVoices:4, waveform:'PWM', attack:ms(50), decay:ms(500), frequency:260})
+
+  //sadSynth = Synth({maxVoices:4, waveform:'Triangle', attack:ms(2000), decay:ms(1000), frequency:196})
+
+
+
+  //angrySynth = Synth({maxVoices:4, waveform:'PWM', attack:ms(1), decay:ms(1000), frequency:175})
+
+  //fearSynth = Synth({maxVoices:4, waveform:'PWM', attack:ms(1), decay:ms(1000), frequency:699})
+
+  //surpriseSynth = Synth({maxVoices:4, waveform:'PWM', attack:ms(1), decay:ms(1000), frequency:329})
   //drums = EDrums('x*o*x*o-')
   //follow = Follow( drums )
-
+ 
   // Set text characteristics
   textFont(font);
   textSize(fontsize);
@@ -58,10 +69,12 @@ function draw() {
             break;
         case "joy":
           background("#F4C925");
-          //a.play( [440, 880, 1320], 1/8 );
-          e = ["e3", "g#3", "b3"];
-          //a.play(e);
-          a.chord.seq( [e], 1);
+            //a.play( [440, 880, 1320], 1/8 );
+            e = ["e3", "g#3", "b3"];
+            //a.play(e);
+            //a.chord.seq( [e], 1);
+            //happySynth.note([240]);
+            a.note([240]);
             break;
         case "fear":
           background("#A587BD");
@@ -75,7 +88,7 @@ function draw() {
           background("#7ACFEE");
           //a.play( [50, 80, 50, 80 ], 1/2 );
           
-          //a.play(am);
+          
           a.chord.seq( [am], 1);
         
             break;
