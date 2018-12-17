@@ -9,6 +9,7 @@
           function anslyseEmotion(text){
             
                 console.log("text: " + text);
+                
             
                 // batch example
                 jQuery.post(
@@ -56,6 +57,7 @@
                   }
 
                   emotionText = greatestEmotion;
+                  return greatestEmotion;
                 });
 
         }

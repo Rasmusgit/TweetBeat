@@ -9,8 +9,6 @@ var font,
   var waveOn = false;
   
 
-
-
 function preload() {
   // Ensure the .ttf or .otf font stored in the assets directory
   // is loaded before setup() and draw() are called
@@ -64,7 +62,8 @@ function draw() {
         f = ["f3", "a3", "c3"];
         gm = ["g3","bb3", "d3"];
         //a.play(am);
-        a.chord.seq( [f,gm, am], 1);
+        //a.chord.seq( [f,gm, am], 1);
+        a.note([175]);
 
             break;
         case "joy":
@@ -74,14 +73,15 @@ function draw() {
             //a.play(e);
             //a.chord.seq( [e], 1);
             //happySynth.note([240]);
-            a.note([240]);
+            a.note([260]);
+            
             break;
         case "fear":
           background("#A587BD");
           //a.play( [100, 150, 100], 1/4 );
           dsm = ["d#", "f#", "a#"];
-          a.chord.seq( [dsm], 1);
-
+          //a.chord.seq( [dsm], 1);
+          a.note([699]);
           
             break;
         case "sadness":
@@ -89,21 +89,20 @@ function draw() {
           //a.play( [50, 80, 50, 80 ], 1/2 );
           
           
-          a.chord.seq( [am], 1);
+          //a.chord.seq( [am], 1);
+          a.note([196]);
         
             break;
         case "surprise":
           background( "#79B84D");
           //a.play( [5, 50, 500,  1000], 1/4 );
             bb = ["bb","d", "f"];
-            a.chord.seq([bb], 1);
-            
+            //a.chord.seq([bb], 1);
+            a.note([329]);
             break;
         default:
           background("#ffffff");
           waveOn = true;
-
-
       }
 
       retweetVal = returnJson.statuses[0].retweet_count/ 100000;
@@ -118,10 +117,6 @@ function draw() {
 
   }
 
-  if(waveOn == true){
-    //drawWave();
-    //drawBase();   
-  }
 
   // Align the text in the center
   // and run drawWords() in the middle of the canvas
@@ -131,37 +126,6 @@ function draw() {
 
 }
 
-function drawWave(){
-
-
-  fill(0);
-  // We are going to draw a polygon out of the wave points
-  beginShape();
-
-  //var xoff = 0;       // Option #1: 2D Noise
-  var xoff = yoff; // Option #2: 1D Noise
-
-  // Iterate over horizontal pixels
-  for (var x = 0; x <= width; x += 40) {
-    // Calculate a y value according to noise, map to
-
-    // Option #1: 2D Noise
-    var y = map(noise(xoff, yoff), 0, 1, 200,follow.getValue*100);
-
-    // Option #2: 1D Noise
-     //var y = map(noise(xoff), 0, 1, 200,300);
-
-    // Set the vertex
-    vertex(x, y);
-    // Increment x dimension for noise
-    xoff += 0.05;
-  }
-  // increment y dimension for noise
-  yoff += 0.01;
-  vertex(width, height);
-  vertex(0, height);
-  endShape(CLOSE);
-}
 
 function drawWords(x) {
   // The text() function needs three parameters:
@@ -172,44 +136,3 @@ function drawWords(x) {
   fill(255);
   text(emotionText, x,  height * .5);
 }
-
-function setupBase(){
-  drums = EDrums( 'x*o*x*o-' )
-
-  sampler = Sampler().record( drums, 1 )
-    .note.seq( [.25,.5,1,2].rnd(), [1/4,1/8,1/2].rnd() )
-    .fx.add( Delay(1/64))
-    .pan.seq( Rndf(-1,1) )
-
-  bass = Mono('bass')
-    .note.seq( [0,7], 1/8 )
-
-  Gibber.scale.root.seq( ['c4','eb4'], 1 )
-
-  // follow Gibber's Master bus output
-  follow = Follow( Gibber.Master, 1024 )
-
-  background( '#000')
-  noFill()
-  stroke('#064D67')
-}
-
-function drawBase(){
-  var x = mouseX / windowWidth,
-     y = mouseY / windowHeight,
-     ww2 = windowWidth / 2,
-     wh2 = windowHeight / 2,
-     value = follow.getValue(),
-     radius = ( ww2 > wh2 ? wh2 : ww2 ) * value
-
- bass.resonance = (1 - x) * 5
- bass.cutoff = (1 - y) / 2
-
- sampler.fx[0].feedback = x < .99 ? x : .99
-
- strokeWeight( value * 50 )
- background( 64,64,64,10 )
- ellipse( ww2, wh2, radius, radius )
-}
-
-function convertValue(val, max, min) { return (val - min) / (max - min); }

@@ -9,7 +9,7 @@ $twitter = new TwitterOAuth($consumer_key,$consumer_secret,$access_token,$access
 $search = $_POST['postsearch'];
 
 
-$tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=from:'. $search .'&result_type=recent&count=5');
+$tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=from:'. $search .'&result_type=recent');
 $tweets = json_encode($tweets);
 echo $tweets;
 //print_r ($tweets);
