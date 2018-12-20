@@ -6,9 +6,9 @@
 
           $.noConflict();
 
-          function anslyseEmotion(text){
+          function anslyseEmotion(status,index){
             
-                console.log("text: " + text);
+                console.log("text: " + status.text);
                 
             
                 // batch example
@@ -16,7 +16,7 @@
                   'https://apiv2.indico.io/emotion/batch',
                   JSON.stringify({
                     'api_key': api_key,
-                    'data': [text],
+                    'data': [status.text],
                     'threshold': 0.1
                   })
                 ).then(function(res) {
@@ -57,6 +57,7 @@
                   }
 
                   emotionText = greatestEmotion;
+		  tweetAnalyzed({emotion:emotionText,text:status.text,postedDate:new Date(status.created_at),favorites:status.favorite_count},index);
                   return greatestEmotion;
                 });
 

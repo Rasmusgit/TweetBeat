@@ -11,6 +11,8 @@
          var num = 0;
          var noteTimer = null;
          var length;
+	 var postEmotion = "";
+var statusesData = [];
       </script>
       <!--<script language="javascript" src="sketch.js"></script>-->
       <script
@@ -57,12 +59,43 @@
                 
                   var postText = returnJson.statuses[0].text;
                   tweetText = postText;
+
+
+
+
+		var i;
+		
+		for(i = 0; i < returnJson.statuses.length; i++){
+			//statusesData.push([anslyseEmotion(returnJson.statuses[i].text),returnJson.statuses[i].text]);
+			anslyseEmotion(returnJson.statuses[i],i);
+		}   
+		
+/*    
+		for(j = 0; j < statusesData.length; j++){
+			setTimeout(function() {
+				playTweet(statusesData[j]);
+			}, 1000);
+		}     
+
+		var i = 1;                     //  set your counter to 1
+
+		function myLoop () {           //  create a loop function
+		   setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+		      playTweet(statusesData[i]);         //  your code here
+		      i++;                     //  increment the counter
+		      if (i < 10) {            //  if the counter < 10, call the loop function
+			 myLoop();             //  ..  again which will trigger another 
+		      }                        //  ..  setTimeout()
+		   }, 3000)
+		}
+
+		myLoop();  */
+
                   
                   //callEmotion(length);
-                  noteTimer = setInterval(hitItMaestro, 5000);
+                  //noteTimer = setInterval(hitItMaestro, 5000);
                   
-                
-                
+
               });
 
               
@@ -81,20 +114,105 @@
 
             }
         </script>
-        
 
     </header>
-
 
   </body>
 
   <script>
     Gibber.init() // REQUIRED!
     
+    a = Synth({ maxVoices:4, waveform:'PWM', attack:ms(300), decay:ms(300), pulsewidth:0.25 })
+	
+	function printTweetData(){
+		for(i = 0; i < returnJson.statuses.length; i++){
+			
+			console.log("index: " + i + "" + statusesData[i].postedDate);
+		}   
+		statusesData=statusesData.reverse();
+		console.log("reversed");
+		for(i = 0; i < returnJson.statuses.length; i++){
+			
+			console.log("index: " + i + "" + statusesData[i].postedDate);
+		}   
+	}
+    function tweetAnalyzed(o,index){
+	console.log("analyzed, statuses.length:" + statusesData.length);
+	statusesData[index]=o;
+	if(statusesData.length==returnJson.statuses.length){
+		printTweetData();
+
+		var i = 1;                     //  set your counter to 1
+
+		   var nextDate = statusesData[1].postedDate;
+		   var thisDate = statusesData[0].postedDate;
+
+		function myLoop () {	       //  create a loop function
+		   
+
+		   var timeDiff = Math.abs(nextDate -  thisDate);
+		   var diffHours = Math.ceil(timeDiff / (60*60*1000)); 
+		   var diffSeconds = timeDiff / 1000;
+		   console.log("diffSeconds: " + diffSeconds);
+
+
+		   var timeoutLength=diffSeconds/3;
+		   console.log("timeoutLength (ms): " + timeoutLength);
+		   setTimeout(function () {    //  call a 3s setTimeout when the loop is called
+		      playTweet(statusesData[i-1]);         //  your code here
+		      i++;                     //  increment the counter
+		      console.log("increasing counter...");
+		      if (i < returnJson.statuses.length+1) {            //  if the counter < 10, call the loop function
+
+ 			 nextDate = statusesData[i].postedDate;
+		   	 thisDate = statusesData[i-1].postedDate;
+			 myLoop();             //  ..  again which will trigger another 
+			 console.log("index: " + i);
+		   console.log("thisDate: " + thisDate);
+		   console.log("nextDate: " + nextDate);
+		      }                        //  ..  setTimeout()
+		   }, timeoutLength);
+		}
+
+		myLoop();	
+		
+	}
+    }
+
+    function playTweet(o){
+	// a.note([o.text]);
+	console.log("o.text :" + o.text);
+	console.log("o.emotion :" + o.emotion);
+	console.log("o.favorites :" + o.favorites);
+	var amplitude = (1-(1/o.favorites));
+	console.log("amplitude :" + amplitude);
+
+	switch(o.emotion) {
+		case "anger":
+		    a.note([175],amplitude);
+		    break;
+		case "joy":
+		    a.note([260],amplitude);
+		    break;
+		case "fear":
+		    a.note([699],amplitude);
+		    break;
+		case "sadness":
+		    a.note([196],amplitude);
+		    break;
+		case "surprise":
+		    a.note([329],amplitude);
+		    break;
+		default:
+
+            } 
+    }
+
     function hitItMaestro(){
       console.log("Maestro: " + num);
       a = Synth({ maxVoices:4, waveform:'PWM', attack:ms(1), decay:ms(1000), pulsewidth:0.25 })
-      console.log(anslyseEmotion(returnJson.statuses[num].text));
+      console.log(returnJson.statuses[num].text)
+      postEmotion=anslyseEmotion(returnJson.statuses[num].text);
       
       //a.note([329])
       
@@ -112,7 +230,7 @@
 
       //a.note([175]);
 
-      console.log("postemotion: " + postEmotion);
+      console.log("postEmotion: " + postEmotion);
       switch(postEmotion) {
         case "anger":
             a.note([175]);
