@@ -2,15 +2,17 @@
  var api_key = "a8d67c385959aa0b15540e2fde6c994a";
 
  var txt;
+ var len;
           var emotions = ["anger", "joy", "fear", "sadness", "surprise"];
+          var timeConstant = 5000;
+          var delta = 0;
 
           $.noConflict();
 
-          function anslyseEmotion(text){
+          function anslyseEmotion(text, n, nLength){
             
                 console.log("text: " + text);
                 
-            
                 // batch example
                 jQuery.post(
                   'https://apiv2.indico.io/emotion/batch',
@@ -57,8 +59,55 @@
                   }
 
                   emotionText = greatestEmotion;
-                  return greatestEmotion;
+                  emotionArray[n] = greatestEmotion;
+                  responses++;
+                  
+                  if(responses >= nLength){
+                    
+                    //noteTimer = setInterval(hitItMaestro, 5000);
+                    hitItMaestro(num);
+                    num--;
+                    console.log("delta: " + delta);
+                    console.log("time: " + timeConstant*delta);
+                    var delta = getDeltaDate(dateArray[num-1],dateArray[num]);
+                    setTimeout(hitItMaestro(num), (timeConstant*delta));
+                    //repeatTimer(nLength);
+
+                  }
                 });
+
+
+                function repeatTimer(){
+                    var delta = 0;
+                    console.log("num: " + num);
+                    
+                    
+                    if(num != 0){
+                      delta = getDeltaDate(dateArray[num-1],dateArray[num]);
+                      console.log("delta: " + delta);
+                      console.log("time: " + timeConstant*delta);
+                      hitItMaestro(num);
+                      num--;
+                      setTimeout(repeatTimer(), (timeConstant*delta));
+                    }
+                    
+
+                   
+                }
+
+                function getDeltaDate(date1, date2){
+                    var one_minute=1000*60;
+
+                   // Convert both dates to milliseconds
+                    var date1_ms = date1.getTime();
+                    var date2_ms = date2.getTime();
+
+                    // Calculate the difference in milliseconds
+                    var difference_ms = date1_ms - date2_ms;
+
+                    // Convert back to minutes and return
+                    return Math.round(difference_ms/one_minute);
+                }
 
         }
 
