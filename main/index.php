@@ -122,9 +122,15 @@ var statusesData = [];
   <script>
     Gibber.init() // REQUIRED!
     
-    a = Synth({ maxVoices:4, waveform:'PWM', attack:ms(300), decay:ms(300), pulsewidth:0.25 })
+    a = Synth({ maxVoices:4, waveform:'PWM', attack:ms(200), decay:ms(200), pulsewidth:0.1 });
+
+v = Vibrato();
+r = Reverb({roomsize:0.995,damping:0.5});
+a.glide=0.5;
+a.fx.add( v,r )
 	
 	function printTweetData(){
+
 		for(i = 0; i < returnJson.statuses.length; i++){
 			
 			console.log("index: " + i + "" + statusesData[i].postedDate);
@@ -156,13 +162,13 @@ var statusesData = [];
 		   console.log("diffSeconds: " + diffSeconds);
 
 
-		   var timeoutLength=diffSeconds/3;
+		   var timeoutLength=diffSeconds/10;
 		   console.log("timeoutLength (ms): " + timeoutLength);
 		   setTimeout(function () {    //  call a 3s setTimeout when the loop is called
 		      playTweet(statusesData[i-1]);         //  your code here
 		      i++;                     //  increment the counter
 		      console.log("increasing counter...");
-		      if (i < returnJson.statuses.length+1) {            //  if the counter < 10, call the loop function
+		      if (i < returnJson.statuses.length) {            //  if the counter < 10, call the loop function
 
  			 nextDate = statusesData[i].postedDate;
 		   	 thisDate = statusesData[i-1].postedDate;
@@ -184,7 +190,12 @@ var statusesData = [];
 	console.log("o.text :" + o.text);
 	console.log("o.emotion :" + o.emotion);
 	console.log("o.favorites :" + o.favorites);
-	var amplitude = (1-(1/o.favorites));
+	if(o.favorites==0){
+		var num = 0.5;
+	}else {
+		var num = (1-(1/o.favorites));
+	}
+	var amplitude = num.toFixed(5);
 	console.log("amplitude :" + amplitude);
 
 	switch(o.emotion) {
@@ -192,7 +203,7 @@ var statusesData = [];
 		    a.note([175],amplitude);
 		    break;
 		case "joy":
-		    a.note([260],amplitude);
+		    a.note([261],amplitude);
 		    break;
 		case "fear":
 		    a.note([699],amplitude);
@@ -217,16 +228,12 @@ var statusesData = [];
       //a.note([329])
       
 
-
       retweetVal = returnJson.statuses[0].retweet_count/ 100000;
 
       console.log(retweetVal);
 
       a.attack = returnJson.statuses[0].favorite_count;
 
-      r = Reverb({ roomSize: Add( retweetVal, Sine( .05, .245 )._ ) });
-
-      a.fx.add( r );
 
       //a.note([175]);
 
