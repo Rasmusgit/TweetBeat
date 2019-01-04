@@ -135,16 +135,18 @@
         diffSeconds1 = timeDiff1 / 1000;
         slider.value = 0;
         slider.max = diffSeconds1;
+        diff = Math.round(diffSeconds1/10000);
         hej = 0;
         console.log("Slider max: " + slider.max);
         setInterval(function(){
-            var diff = Math.round(diffSeconds1/1000);
+            
             console.log("diff: " + diff)
-            hej = slider.value + diff;
+            hej = parseInt(slider.value) + diff;
+            console.log("hej : " + hej);
             slider.value = hej ;
             console.log("slider value : " + slider.value);
             output.innerHTML = slider.value;
-        }, 1000);
+        }, 100);
 
 
 		printTweetData();
