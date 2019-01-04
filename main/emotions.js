@@ -40,7 +40,16 @@
 
 
                   emotionText = greatestEmotion;
-		  tweetAnalyzed({emotion:emotionText,confidence:response[greatestEmotion],text:status.text,retweet_count: status.retweet_count,postedDate:new Date(status.created_at),favorites:status.favorite_count, followers:status.user.followers_count},index);
+                  var o = {emotion:emotionText,confidence:response[greatestEmotion],text:status.text,retweet_count: status.retweet_count,postedDate:new Date(status.created_at),favorites:status.favorite_count, followers:status.user.followers_count};
+                  statusesData[index]=o;
+                  if(statusesData.length == returnJson.statuses.length && !inProgress){
+                    
+                    console.log("pt statuses.length:" + statusesData.length);
+                    console.log("pt returnJson.length:" + returnJson.statuses.length);
+                    inProgress = true;
+                    tweetAnalyzed();
+                  }
+		              
                   return greatestEmotion;
                 });
 

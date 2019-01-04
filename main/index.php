@@ -12,6 +12,8 @@
          var noteTimer = null;
          var length;
          var diffSeconds1 = 0;
+         var timer;
+         var inProgress = false;
 
          
 	 var postEmotion = "";
@@ -60,6 +62,7 @@
               var inputText = jQuery('#inputText').val();
               num = 0;
               statusesData = [];
+              inProgress = false;
 
               jQuery.post('searchTweets.php', {postsearch: inputText}, 
               function(data){
@@ -100,7 +103,6 @@
 
   </body>
 
-  <script src='twitterhelper.js'></script>
   <script src='sonification.js'></script>
 
 
