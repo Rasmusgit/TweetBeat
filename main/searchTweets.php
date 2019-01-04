@@ -8,8 +8,18 @@ $twitter = new TwitterOAuth($consumer_key,$consumer_secret,$access_token,$access
 
 $search = $_POST['postsearch'];
 
+//q=from:
 
-$tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=from:'. $search .'&result_type=recent');
+if(strpos($search, '#') !== false){
+    $search = substr ( $search , 1);
+    $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23'. $search .'&result_type=recent&include_entities=true');
+}else if(strpos($search, '@') !== false){
+    $search = substr ( $search , 1 );
+    $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=from:'. $search .'&result_type=recent');
+}
+
+
+
 $tweets = json_encode($tweets);
 echo $tweets;
 //print_r ($tweets);

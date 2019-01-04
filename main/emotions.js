@@ -22,12 +22,14 @@
                 ).then(function(res) {
                   var response = res.results[0];
                   var greatestEmotion = "";
+                  
 
                   for(i=0;i<emotions.length;i++){
                     if(response.hasOwnProperty(emotions[i])){
                       
                       if(greatestEmotion == "" || response[emotions[i]]>=response[greatestEmotion]){
                         greatestEmotion = emotions[i];
+
                       }
                     }
 
@@ -35,29 +37,10 @@
                   console.log(response);
                   console.log(greatestEmotion);
 
-                  switch(greatestEmotion) {
-                      case "anger":
-                      jQuery(document.body).css("background", "#a91834");
 
-                          break;
-                      case "joy":
-                      jQuery(document.body).css("background", "#F4C925");
-                          break;
-                      case "fear":
-                      jQuery(document.body).css("background", "#A587BD");
-                          break;
-                      case "sadness":
-                      jQuery(document.body).css("background", "#7ACFEE");
-                          break;
-                      case "surprise":
-                      jQuery(document.body).css("background", "#79B84D");
-                          break;
-                      default:
-
-                  }
 
                   emotionText = greatestEmotion;
-		  tweetAnalyzed({emotion:emotionText,text:status.text,postedDate:new Date(status.created_at),favorites:status.favorite_count},index);
+		  tweetAnalyzed({emotion:emotionText,confidence:response[greatestEmotion],text:status.text,retweet_count: status.retweet_count,postedDate:new Date(status.created_at),favorites:status.favorite_count, followers:status.user.followers_count},index);
                   return greatestEmotion;
                 });
 
