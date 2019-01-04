@@ -39,12 +39,23 @@
 
         <div id="inputarea">
 
-          <input type="search" id="inputText"  class="width-dynamic proba dva"  placeholder="Write message here..." />
-          <button class="button" onClick="post()">Search</button>
+          <input type="search" id="inputText"  class="width-dynamic proba dva" placeholder="Search #hashtag or @account" size="50" autofocus/>
+          <button class="button" id="buttonID" onClick="post()">Search</button>
 
         </div>
         <script src='textbox.js'></script>
+	
         <script type="text/javascript">
+
+	//[ENTER] press to search
+	document.getElementById("inputText").addEventListener("keyup", function(event) {
+	     event.preventDefault();
+	     if (event.keyCode === 13) {
+		 document.getElementById("buttonID").click();
+	    }
+	});
+
+
             function post(){
               var inputText = jQuery('#inputText').val();
               num = 0;
@@ -109,6 +120,34 @@
     //r = Reverb({roomsize:0.995,damping:0.5});
     //a.glide=0.5;
     //a.fx.add( v,r )
+
+    //a = Synth({ maxVoices:4, waveform:'PWM', attack:ms(300), decay:ms(300), pulsewidth:0.5 });
+    b = Pluck();
+    k = Kick();
+    sn = Snare();
+    hat = Hat();
+    tom = Tom();
+    cow = Cowbell();
+    cla = Clave();
+    con = Conga();
+
+
+    dis = Distortion();
+    l = LPF();
+    rm = RingMod();
+    s = Schizo();
+    f = Flanger();
+    ch = Chorus();
+    c = Crush();
+    v = Vibrato();
+    r = Reverb({roomsize:0.995,damping:0.5});
+    t = Tremolo();
+    g = Gain();
+    //a.glide=0.5;
+    
+    //a.fx.add(dis);
+    //b.fx.add(dis);
+
 	
 	function printTweetData(){
 
