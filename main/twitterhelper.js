@@ -12,10 +12,22 @@ function printTweetData(){
     }   
 }
 
+function statusesAnalyzed(){
+	for(i = 0; i < returnJson.statuses.length; i++){
+		console.log("checking index :" + i);
+		if(statusesData[i].postedDate=='undefined'){
+			console.log("index: " + i + ", has postedDate: " + statusesData[i].postedDate);
+			return false;
+		}
+	}
+	console.log("all tweets were analyzed!");
+	return true;
+}
+
 function tweetAnalyzed(o,index){
     console.log("analyzed, statuses.length:" + statusesData.length);
     statusesData[index]=o;
-    if(statusesData.length==returnJson.statuses.length){
+    if(statusesAnalyzed()){
     
         var firstDate = statusesData[0].postedDate;
         var lastDate = statusesData[statusesData.length-1].postedDate;
