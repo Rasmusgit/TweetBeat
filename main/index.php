@@ -89,20 +89,45 @@
               
             }
 
+
+
+            
+            
+
         </script>
+
+
 
     </header>
     <div id="main">
+        <div id="tweetbox">
+            <div class="tweet">
+              <div class="sidebar">
+                <div id="profilepic" class="profile"></div>
+              </div>
+
+              <div class="mainbar">
+                <div class="top"><p id="placeholdername" class="name"></p><p id="username" class="username"></p><p class="point">·</p><p id="time" class="time">42m</p></div>
+
+                <div class="content">
+                  <p id="placeholder-text"></p>
+                </div>
+
+                <div class="bottom"></div>
+              </div>
+          </div>
+            
+        </div>
         <p id="emRes"></p>
         <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
-        <p>Value: <span id="demo"></span></p>    
+        <!--<p>Value: <span id="demo"></span></p>-->    
     </div>
     <div id="bottom">
         
     </div>
 
   </body>
-
+  <script src='twitterhelper.js'></script>
   <script src='sonification.js'></script>
 
 

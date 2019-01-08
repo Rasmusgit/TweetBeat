@@ -12,10 +12,10 @@ $search = $_POST['postsearch'];
 
 if(strpos($search, '#') !== false){
     $search = substr ( $search , 1);
-    $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23'. $search .'&result_type=recent&include_entities=true');
+    $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=%23'. $search .'&result_type=recent&include_entities=true&count=5');
 }else if(strpos($search, '@') !== false){
     $search = substr ( $search , 1 );
-    $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=from:'. $search .'&result_type=recent');
+    $tweets = $twitter->get('https://api.twitter.com/1.1/search/tweets.json?q=from:'. $search .'&result_type=recent&count=5');
 }
 
 

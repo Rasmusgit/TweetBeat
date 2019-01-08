@@ -40,13 +40,13 @@
 
 
                   emotionText = greatestEmotion;
-                  var o = {emotion:emotionText,confidence:response[greatestEmotion],text:status.text,retweet_count: status.retweet_count,postedDate:new Date(status.created_at),favorites:status.favorite_count, followers:status.user.followers_count};
+                  var o = {emotion:emotionText,confidence:response[greatestEmotion],text:status.text,retweet_count: status.retweet_count,postedDate:new Date(status.created_at),favorites:status.favorite_count, followers:status.user.followers_count, name: status.user.name, user: status.user.screen_name, profileimg: status.user.profile_image_url_https};
                   statusesData[index]=o;
-                  if(statusesData.length == returnJson.statuses.length && !inProgress){
+                  if(statusesData.length == returnJson.statuses.length){
                     
                     console.log("pt statuses.length:" + statusesData.length);
                     console.log("pt returnJson.length:" + returnJson.statuses.length);
-                    inProgress = true;
+                   
                     tweetAnalyzed();
                   }
 		              
