@@ -94,6 +94,25 @@ header{
 
 }
 
+
+
+  
+  /* Style the submit button */
+   .button {
+    width: auto;
+    padding: 10px;
+    color: #064D67;
+    background:#fff;
+    font-size: 17px;
+    border: none;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  
+
+  
+
+
 #main{
     width: 100vw;
     height: calc(100vh - (12em));

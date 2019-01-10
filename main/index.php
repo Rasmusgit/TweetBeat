@@ -1,6 +1,6 @@
 <html>
   <head>
-
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" type="text/css" href="style.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
       <script src="../resources/p5.gibber.js" type="text/javascript" charset="utf-8"></script>
@@ -46,10 +46,11 @@
       <p id="logo">Tweet<span>BEAT</span></p>
 
         <div id="inputarea">
-
+      
           <input type="search" id="inputText"  class="width-dynamic proba dva" placeholder="Search #hashtag or @account" size="50" autofocus/>
-          <button class="button" id="buttonID" onClick="post()">Search</button>
-
+          <!--<button class="button" id="buttonID" onClick="post()">Search</button>-->
+          <button  class="button" id="buttonID" onClick="post()"><i class="fa fa-search"></i></button>
+         
         </div>
         <script src='textbox.js'></script>
 	
