@@ -5,7 +5,8 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
       <script src="../resources/p5.gibber.js" type="text/javascript" charset="utf-8"></script>
       <script src='build/gibber.lib.js'></script>
-      <script> var emotionText = "";
+      <script> 
+         var emotionText = "";
          var returnJson = new Object();
          var tweetText = "";   
          var num = 0;
@@ -64,6 +65,20 @@
 
 
             function post(){
+              emotionText = "";
+              returnJson = new Object();
+              tweetText = "";   
+              num = 0;
+              noteTimer = null;
+              length;
+              diffSeconds1 = 0;
+              timer;
+              inProgress = false;
+              minFollowers = 0;
+              maxFollowers = 0;
+              minRetweets = 0;
+              maxRetweets = 0;
+
               var inputText = jQuery('#inputText').val();
               num = 0;
               statusesData = [];
@@ -81,7 +96,7 @@
                 var postText = returnJson.statuses[0].text;
                 tweetText = postText;
 
-                var i;
+                
 
                 
                 

@@ -54,21 +54,15 @@ function tweetAnalyzed(o,index){
         var firstDate = statusesData[0].postedDate;
         var lastDate = statusesData[statusesData.length-1].postedDate;
         var timeDiff1 = Math.abs(lastDate -  firstDate);
-		var diffHours1 = Math.ceil(timeDiff1 / (60*60*1000)); 
+        var diffHours1 = Math.ceil(timeDiff1 / (60*60*1000)); 
         diffSeconds1 = timeDiff1 / 1000;
-        diff = Math.round(diffSeconds1/1000);
+        console.log("Total diff: " + diffSeconds1);
+        diff = diffSeconds1/1000;
         slider.value = 0;
-        slider.max = diffSeconds1*1000;
+        slider.max = diffSeconds1;
         hej = 0;
         console.log("Slider max: " + slider.max);
-        setInterval(function(){
-            
-            //console.log("diff: " + diff)
-            hej = parseInt(slider.value) + diff;
-            slider.value = hej ;
-            //console.log("slider value : " + slider.value);
-            //output.innerHTML = slider.value;
-        }, 1000);
+        
     
     
         printTweetData();
@@ -80,7 +74,14 @@ function tweetAnalyzed(o,index){
            displayTweet(statusesData[i-1], i-1);
            playTweet(statusesData[i-1]);
            
-          
+           setInterval(function(){
+            
+            console.log("diff: " + diff)
+            hej = parseInt(slider.value) + diff;
+            slider.value = hej ;
+            //console.log("slider value : " + slider.value);
+            //output.innerHTML = slider.value;
+        }, 1000);
           
            i++;
 
@@ -92,7 +93,7 @@ function tweetAnalyzed(o,index){
             var diffHours = Math.ceil(timeDiff / (60*60*1000)); 
             var diffSeconds = timeDiff / 1000;
     
-           var timeoutLength=diffSeconds*1000;
+           var timeoutLength=diffSeconds*100;
 
            
            //console.log("timeoutLength (ms): " + timeoutLength);

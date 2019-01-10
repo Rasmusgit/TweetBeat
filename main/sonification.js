@@ -49,13 +49,7 @@ g = Gain();
 
 function playTweet(o){
 
-if(o.followers <= 300){
-    num = 0.1;
-}else if(o.followers <= 1000){
-    num = 0.3;
-}else{
-    num = 1;
-}
+
 
 
 
@@ -67,36 +61,12 @@ var attack = o.confidence.toFixed(5)*44100;
 var decay = attack;
 
 
-retweetVal = (((1 - 0.1)*(o.retweet_count - minRetweets)) / (maxRetweets - minRetweets)) + 0.1;
+retweetVal = (((0.8)*(o.retweet_count - minRetweets)) / (maxRetweets - minRetweets));
 console.log("Retweets: " + o.retweet_count + " / Reverb: " + retweetVal);
 
 r = Reverb({ roomSize: Add( retweetVal, Sine( .05, .245 )._ ) });
- //a.fx.add( r );
-/*switch(o.emotion) {
+//a.fx.add( r );
 
-    case "anger":
-    
-    jQuery(document.body).css("background", "#a91834");
-    
-
-        break;
-    case "joy":
-    jQuery(document.body).css("background", "#F4C925");
-        break;
-    case "fear":
-    jQuery(document.body).css("background", "#A587BD");
-        break;
-    case "sadness":
-    jQuery(document.body).css("background", "#7ACFEE");
-        break;
-    case "surprise":
-    jQuery(document.body).css("background", "#79B84D");
-        break;
-    default:
-
-}
-var textEmotion = document.getElementById("emRes");
-textEmotion.innerHTML = o.emotion;*/
 
 
 //console.log("attack: " + attack);
