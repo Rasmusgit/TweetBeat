@@ -67,10 +67,8 @@ var attack = o.confidence.toFixed(5)*44100;
 var decay = attack;
 
 
-retweetVal = o.retweet_count/ 100000;
-
-console.log("retweetVal: " + retweetVal);
-
+retweetVal = (((1 - 0.1)*(o.retweet_count - minRetweets)) / (maxRetweets - minRetweets)) + 0.1;
+console.log("Retweets: " + o.retweet_count + " / Reverb: " + retweetVal);
 
 r = Reverb({ roomSize: Add( retweetVal, Sine( .05, .245 )._ ) });
  //a.fx.add( r );
