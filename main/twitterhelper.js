@@ -73,7 +73,7 @@ function tweetAnalyzed(o,index){
            var thisDate = statusesData[0].postedDate;
            displayTweet(statusesData[i-1], i-1);
            playTweet(statusesData[i-1]);
-           
+            
            setInterval(function(){
             
             console.log("diff: " + diff)
