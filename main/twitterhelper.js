@@ -58,7 +58,7 @@ function tweetAnalyzed(o,index){
         diffSeconds1 = timeDiff1 / 1000;
         diff = Math.round(diffSeconds1/1000);
         slider.value = 0;
-        slider.max = diffSeconds1/10;
+        slider.max = diffSeconds1*1000;
         hej = 0;
         console.log("Slider max: " + slider.max);
         setInterval(function(){
@@ -92,7 +92,7 @@ function tweetAnalyzed(o,index){
             var diffHours = Math.ceil(timeDiff / (60*60*1000)); 
             var diffSeconds = timeDiff / 1000;
     
-           var timeoutLength=diffSeconds/10;
+           var timeoutLength=diffSeconds*1000;
 
            
            //console.log("timeoutLength (ms): " + timeoutLength);

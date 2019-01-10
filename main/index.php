@@ -14,6 +14,8 @@
          var diffSeconds1 = 0;
          var timer;
          var inProgress = false;
+         var minFollowers = 0;
+         var maxFollowers = 0;
 
          
 	 var postEmotion = "";
@@ -77,9 +79,22 @@
                 tweetText = postText;
 
                 var i;
+
+                
                 
                 for(i = 0; i < returnJson.statuses.length; i++){
                     //statusesData.push([anslyseEmotion(returnJson.statuses[i].text),returnJson.statuses[i].text]);
+                    var currentFollowing = returnJson.statuses[i].user.followers_count;
+                    if(i == 0 || minFollowers > currentFollowing){
+                      minFollowers = currentFollowing;
+                      console.log("New min followers: " + minFollowers);
+                    }
+
+                    if(i == 0 || maxFollowers < currentFollowing){
+                      maxFollowers = currentFollowing;
+                      console.log("New max followers: " + maxFollowers);
+                    }
+
                     anslyseEmotion(returnJson.statuses[i],i);
                 }   
 		

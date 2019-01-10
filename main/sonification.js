@@ -58,9 +58,14 @@ if(o.followers <= 300){
 }
 
 
-var amplitude = num.toFixed(5);
+
+//var amplitude = 1 - (1/o.followers);
+var amplitude = (((1 - 0.1)*(o.followers - minFollowers)) / (maxFollowers - minFollowers)) + 0.1;
+console.log("Followers: " + o.followers + " / Amp: " + amplitude);
+
 var attack = o.confidence.toFixed(5)*44100;
 var decay = attack;
+
 
 retweetVal = o.retweet_count/ 100000;
 
