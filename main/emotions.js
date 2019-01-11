@@ -1,5 +1,5 @@
 
- var api_key = "a8d67c385959aa0b15540e2fde6c994a";
+ var api_key = "b2e45ada49f90388b1bee5d3b395f956";
 
  var txt;
           var emotions = ["anger", "joy", "fear", "sadness", "surprise"];
