@@ -164,7 +164,18 @@
             
         </div>
         <p id="emRes"></p>
-        <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+<div class="row">
+  <div class="column">
+    <p id="firstDateDiv"/>
+  </div>
+  <div class="slidercolumn">
+	<input type="range" min="0" max="100" value="0" class="slider" id="myRange" />
+  </div>
+  <div class="column">
+    <p id="lastDateDiv"/>
+  </div>
+</div>
+        
         <!--<p>Value: <span id="demo"></span></p>-->    
     </div>
     <div id="bottom">

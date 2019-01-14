@@ -47,6 +47,35 @@ function statusesAnalyzed(){
 	return true;
 }
 
+function getMonthName(date){
+	var dateMonth = date.getMonth()
+	if(dateMonth==0){
+		return "January";	
+	}else if (dateMonth==1){
+		return "February";
+	}else if (dateMonth==2){
+		return "March";
+	}else if (dateMonth==3){
+		return "April";
+	}else if (dateMonth==4){
+		return "May";
+	}else if (dateMonth==5){
+		return "June";
+	}else if (dateMonth==6){
+		return "July";
+	}else if (dateMonth==7){
+		return "August";
+	}else if (dateMonth==8){
+		return "September";
+	}else if (dateMonth==9){
+		return "October";
+	}else if (dateMonth==10){
+		return "November";
+	}else if (dateMonth==11){
+		return "December";
+	}
+}
+
 function tweetAnalyzed(o,index){
     console.log("analyzed, statuses.length:" + statusesData.length);
     statusesData[index]=o;
@@ -101,12 +130,18 @@ function tweetAnalyzed(o,index){
             }
         }
 
+	    if(typeof statusesData[0] !== 'undefined' && typeof statusesData[0].postedDate !== 'undefined'
+		&& typeof statusesData[statusesData.length-1] !== 'undefined' && typeof statusesData[statusesData.length-1].postedDate !== 'undefined'){
+
+            var firstDate = statusesData[0].postedDate;
+	    var lastDate = statusesData[statusesData.length-1].postedDate;
         
-        
-    
+            //  set your counter to 1
+	    document.getElementById("firstDateDiv").innerHTML = firstDate.getDate() + " " + getMonthName(firstDate) + ", " + firstDate.getHours()+":"+firstDate.getMinutes();
+	    document.getElementById("lastDateDiv").innerHTML = lastDate.getDate() + " " + getMonthName(lastDate) + ", " + lastDate.getHours()+":"+lastDate.getMinutes();
+	    }    
         printTweetData();
     
-            //  set your counter to 1
     
         
             console.log("Total diff: " + totalDiff);

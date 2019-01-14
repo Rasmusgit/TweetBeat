@@ -67,7 +67,7 @@ header{
 
 #inputarea{
     margin-top: 1.5em;
-    width:100%;
+   
     height: 6em;
 
 }
@@ -139,7 +139,7 @@ canvas{
 
 
 .slidecontainer {
-    width: 80vw;
+    width: 75vw;
     margin-left: auto;
     margin-right: auto;
   }
@@ -287,4 +287,22 @@ canvas{
     margin-block-start: 0;
     margin-block-end: 0;
     line-height: 1.3125;
+}
+.column {
+  float: left;
+  width: 10%;
+  padding: 10px;
+}
+.sliderColumn {
+  float: left;
+  width: 75%;
+  padding: 0px;
+}
+.row:after {		
+	content: "";		
+	display: table;		
+	clear: both;		
+}
+#firstDateDiv{
+display: inline-block;
 }
