@@ -19,8 +19,16 @@ Understanding the emotional state of an area of society through Twitter can be u
 ## How?
 ![how](https://user-images.githubusercontent.com/7567156/67622437-6d69d000-f81a-11e9-93de-15e9c8a682d1.JPG)
 
-## Sonification
+## The Sonification
 **Reverb = Number of retweets a tweet has** 
+
 **Volume = Number of followers a person has**
 
 ![sonification](https://user-images.githubusercontent.com/7567156/67622541-5bd4f800-f81b-11e9-89a9-5e4bb5495e16.JPG)
+
+## Temporal aspects of the sonification
+* The sound is played chronologically, based on the timestamp of the tweets.
+* If there is a long pause, and no sound is produced, the software will scale down the pause.
+* Pros and cons
+ * Makes the data less ”realistic”?
+ * Long pauses may cause listeners to think it’s finished or broken.
