@@ -29,6 +29,23 @@ Understanding the emotional state of an area of society through Twitter can be u
 ## Temporal aspects of the sonification
 * The sound is played chronologically, based on the timestamp of the tweets.
 * If there is a long pause, and no sound is produced, the software will scale down the pause.
-* Pros and cons
- * Makes the data less ”realistic”?
- * Long pauses may cause listeners to think it’s finished or broken.
+* Pros and cons:
+  * Makes the data less ”realistic”?
+  * Long pauses may cause listeners to think it’s finished or broken.
+
+## Libraries and APIs
+### Twitter API
+Get acess to tweets and twitter data.
+[Go to Twitter API](https://developer.twitter.com/)
+
+### Indico API
+This API was used to clasify the tweets into different emotions. 
+[Go to Indico API](https://docs.getindico.io/en/stable/http_api/)
+
+### Gibber.js
+Gibber.js is an open source Javascript audio library we used for our sonification.
+[Go to Gibber.js library](http://charlie-roberts.com/gibber/)
+
+
+
+
