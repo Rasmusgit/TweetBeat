@@ -21,5 +21,6 @@ Understanding the emotional state of an area of society through Twitter can be u
 
 ## Sonification
 **Reverb = Number of retweets a tweet has** 
-
 **Volume = Number of followers a person has**
+
+![sonification](https://user-images.githubusercontent.com/7567156/67622541-5bd4f800-f81b-11e9-89a9-5e4bb5495e16.JPG)
