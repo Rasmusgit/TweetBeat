@@ -18,3 +18,8 @@ Understanding the emotional state of an area of society through Twitter can be u
   
 ## How?
 ![how](https://user-images.githubusercontent.com/7567156/67622437-6d69d000-f81a-11e9-93de-15e9c8a682d1.JPG)
+
+## Sonification
+**Reverb = Number of retweets a tweet has** 
+
+**Volume = Number of followers a person has**
